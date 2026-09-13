@@ -1,0 +1,46 @@
+form {
+  margin-top: 24px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+h2 {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #1f2937;
+  font-size: 22px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #2563eb;
+}
+
+app-button {
+  grid-column: 1 / -1;
+}
