@@ -1,0 +1,37 @@
+<h1>Estudiantes</h1>
+
+<app-button texto="Agregar estudiante" (presionado)="mostrarFormulario = !mostrarFormulario">
+</app-button>
+
+@if (mostrarFormulario) {
+<app-formulario-estudiante (estudianteCreado)="cargarEstudiantes()">
+</app-formulario-estudiante>
+
+
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Matrícula</th>
+            <th>Carrera</th>
+            <th>Semestre</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+       @for (estudiante of estudiantes(); track estudiante.id) {
+        <tr>
+            <td>{{ estudiante.id }}</td>
+            <td>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
+            <td>{{ estudiante.matricula }}</td>
+            <td>{{ estudiante.carrera }}</td>
+            <td>{{ estudiante.semestre }}</td>
+            <td>{{ estudiante.correo }}</td>
+        </tr>
+        }
+    </tbody>
+</table>
