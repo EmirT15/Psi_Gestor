@@ -19,6 +19,8 @@ export class EstudiantesPageComponent implements OnInit {
 
     mostrarFormulario: boolean = false;
 
+    estudianteSeleccionado: Estudiante | null = null;
+
     ngOnInit(): void {
         this.cargarEstudiantes();
     }
@@ -33,5 +35,21 @@ export class EstudiantesPageComponent implements OnInit {
                 console.error("error al obtener estudiantes", error);
             }
         });
+    }
+
+    seleccionarParaEditar(estudiante: Estudiante): void {
+        this.estudianteSeleccionado = estudiante;
+        this.mostrarFormulario = true;
+    }
+
+    abrirFormularioNuevo(): void {
+        this.estudianteSeleccionado = null;
+        this.mostrarFormulario = !this.mostrarFormulario;
+    }
+
+    finalizarGuardado(): void {
+        this.mostrarFormulario = false;
+        this.estudianteSeleccionado = null;
+        this.cargarEstudiantes();
     }
 }

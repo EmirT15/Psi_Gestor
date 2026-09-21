@@ -1,5 +1,9 @@
 from flask import Blueprint, jsonify, request
-from services.estudiantes_service import obtener_lista_estudiantes, crear_estudiante
+from services.estudiantes_service import (
+    obtener_lista_estudiantes, 
+    crear_estudiante,
+    actualizar_estudiante
+)
 
 estudiantes_bp = Blueprint("estudiantes",__name__)
 
@@ -48,3 +52,33 @@ def crear_estudiante_ruta():
             "correo": estudiante[6]
         }
     }), 201
+
+@estudiantes_bp.route("/estudiantes/<int:estudiante_id>", methods=["PUT"])
+def actualizar_estudiante_ruta(estudiante_id):
+    datos = request.get_json()
+
+    estudiante = actualizar_estudiante(
+        estudiante_id,
+        datos["nombre"],
+        datos["apellido"],
+        datos["matricula"],
+        datos["carrera"],
+        datos["semestre"],
+        datos["correo"]
+    )
+
+    if not estudiante:
+        return jsonify({"mensaje": "Estudiante no encontrado"}), 404
+
+    return jsonify({
+        "mensaje": "Estudiante actualizado correctamente",
+        "estudiante": {
+            "id": estudiante[0],
+            "nombre": estudiante[1],
+            "apellido": estudiante[2],
+            "matricula": estudiante[3],
+            "carrera": estudiante[4],
+            "semestre": estudiante[5],
+            "correo": estudiante[6]
+        }
+    }), 200
