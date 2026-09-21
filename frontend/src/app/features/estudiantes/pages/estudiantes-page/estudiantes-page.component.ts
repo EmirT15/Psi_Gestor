@@ -34,4 +34,16 @@ export class EstudiantesPageComponent implements OnInit {
             }
         });
     }
+
+    eliminarEstudiante(id: number): void {
+    this.estudiantesService.eliminarEstudiante(id).subscribe({
+        next: () => {
+            this.cargarEstudiantes();
+        },
+        error: (error) => {
+            console.error("Error al eliminar estudiante", error);
+        }
+    });
+    }
+    
 }

@@ -1,5 +1,9 @@
 from flask import Blueprint, jsonify, request
-from services.estudiantes_service import obtener_lista_estudiantes, crear_estudiante
+from services.estudiantes_service import (
+    obtener_lista_estudiantes,
+    crear_estudiante,
+    eliminar_estudiante
+)
 
 estudiantes_bp = Blueprint("estudiantes",__name__)
 
@@ -48,3 +52,25 @@ def crear_estudiante_ruta():
             "correo": estudiante[6]
         }
     }), 201
+
+@estudiantes_bp.route("/estudiantes/<int:id>", methods=["DELETE"])
+def eliminar_estudiante_ruta(id):
+    estudiante = eliminar_estudiante(id)
+
+    if estudiante is None:
+        return jsonify({
+            "mensaje": "Estudiante no encontrado"
+        }), 404
+
+    return jsonify({
+        "mensaje": "Estudiante eliminado correctamente",
+        "estudiante": {
+            "id": estudiante[0],
+            "nombre": estudiante[1],
+            "apellido": estudiante[2],
+            "matricula": estudiante[3],
+            "carrera": estudiante[4],
+            "semestre": estudiante[5],
+            "correo": estudiante[6]
+        }
+    }), 200

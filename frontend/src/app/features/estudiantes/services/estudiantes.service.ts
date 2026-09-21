@@ -17,5 +17,9 @@ private apiUrl = 'http://localhost:5000/estudiantes';
 
     crearEstudiante(estudiante: CrearEstudiante): Observable<Estudiante> {
         return this.http.post<Estudiante>(this.apiUrl, estudiante);
-}
+    }
+
+    eliminarEstudiante(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+    }
 }

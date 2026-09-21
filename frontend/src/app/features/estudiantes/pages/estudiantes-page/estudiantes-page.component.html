@@ -19,6 +19,7 @@
             <th>Carrera</th>
             <th>Semestre</th>
             <th>Correo</th>
+            <th>Acciones</th>   
         </tr>
     </thead>
 
@@ -31,6 +32,11 @@
             <td>{{ estudiante.carrera }}</td>
             <td>{{ estudiante.semestre }}</td>
             <td>{{ estudiante.correo }}</td>
+            <td>
+             <button (click)="eliminarEstudiante(estudiante.id)">
+                         🗑️ Eliminar
+                 </button>
+            </td>
         </tr>
         }
     </tbody>
