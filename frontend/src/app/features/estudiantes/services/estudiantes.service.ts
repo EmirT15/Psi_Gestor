@@ -17,5 +17,9 @@ private apiUrl = 'http://localhost:5000/estudiantes';
 
     crearEstudiante(estudiante: CrearEstudiante): Observable<Estudiante> {
         return this.http.post<Estudiante>(this.apiUrl, estudiante);
-}
+    }
+
+    actualizarEstudiante(id: number, estudiante: CrearEstudiante): Observable<Estudiante> {
+        return this.http.put<Estudiante>(`${this.apiUrl}/${id}`, estudiante);
+    }
 }

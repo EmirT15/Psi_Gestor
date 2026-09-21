@@ -1,7 +1,6 @@
-<h2>Agregar estudiante</h2>
+<h2>{{ estudianteEditar ? 'Editar estudiante' : 'Agregar estudiante' }}</h2>
 
 <form>
-
   <div>
     <label for="nombre">Nombre</label>
     <input
@@ -56,10 +55,8 @@
       name="correo">
   </div>
 
-<app-button
-  texto="Guardar estudiante"
-  (presionado)="guardarEstudiante()">
-</app-button>
-
-
+  <app-button
+    [texto]="estudianteEditar ? 'Actualizar estudiante' : 'Guardar estudiante'"
+    (presionado)="guardarEstudiante()">
+  </app-button>
 </form>

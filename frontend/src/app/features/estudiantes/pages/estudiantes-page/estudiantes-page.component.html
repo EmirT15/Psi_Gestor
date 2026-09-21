@@ -1,13 +1,13 @@
 <h1>Estudiantes</h1>
 
-<app-button texto="Agregar estudiante" (presionado)="mostrarFormulario = !mostrarFormulario">
+<app-button texto="Agregar estudiante" (presionado)="abrirFormularioNuevo()">
 </app-button>
 
 @if (mostrarFormulario) {
-<app-formulario-estudiante (estudianteCreado)="cargarEstudiantes()">
+<app-formulario-estudiante 
+    [estudianteEditar]="estudianteSeleccionado"
+    (estudianteGuardado)="finalizarGuardado()">
 </app-formulario-estudiante>
-
-
 }
 
 <table>
@@ -19,6 +19,7 @@
             <th>Carrera</th>
             <th>Semestre</th>
             <th>Correo</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
@@ -31,6 +32,10 @@
             <td>{{ estudiante.carrera }}</td>
             <td>{{ estudiante.semestre }}</td>
             <td>{{ estudiante.correo }}</td>
+            <td>
+                <app-button texto="Editar" (presionado)="seleccionarParaEditar(estudiante)">
+                </app-button>
+            </td>
         </tr>
         }
     </tbody>
