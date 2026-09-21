@@ -1,16 +1,20 @@
+
 <h1>Estudiantes</h1>
 
 <app-button texto="Agregar estudiante" (presionado)="abrirFormularioNuevo()">
 </app-button>
 
 @if (mostrarFormulario) {
-<app-formulario-estudiante 
+
+<app-formulario-estudiante
     [estudianteEditar]="estudianteSeleccionado"
     (estudianteGuardado)="finalizarGuardado()">
 </app-formulario-estudiante>
+
 }
 
 <table>
+
     <thead>
         <tr>
             <th>ID</th>
@@ -24,7 +28,9 @@
     </thead>
 
     <tbody>
-       @for (estudiante of estudiantes(); track estudiante.id) {
+
+        @for (estudiante of estudiantes(); track estudiante.id) {
+
         <tr>
             <td>{{ estudiante.id }}</td>
             <td>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
@@ -32,11 +38,24 @@
             <td>{{ estudiante.carrera }}</td>
             <td>{{ estudiante.semestre }}</td>
             <td>{{ estudiante.correo }}</td>
+
             <td>
-                <app-button texto="Editar" (presionado)="seleccionarParaEditar(estudiante)">
+
+                <app-button
+                    texto="Editar"
+                    (presionado)="seleccionarParaEditar(estudiante)">
                 </app-button>
+
+                <button (click)="eliminarEstudiante(estudiante.id)">
+                    🗑️ Eliminar
+                </button>
+
             </td>
+
         </tr>
+
         }
+
     </tbody>
+
 </table>

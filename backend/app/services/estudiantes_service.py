@@ -1,24 +1,9 @@
-from repositories.estudiantes_repository import obtener_estudiantes, crear_estudiante_db
-
-
-def obtener_lista_estudiantes():
-    return obtener_estudiantes()
-
-
-def crear_estudiante(nombre, apellido, matricula, carrera, semestre, correo):
-    return crear_estudiante_db(
-        nombre,
-        apellido,
-        matricula,
-        carrera,
-        semestre,
-        correo
-    )
 
 from repositories.estudiantes_repository import (
-    obtener_estudiantes, 
+    obtener_estudiantes,
     crear_estudiante_db,
-    actualizar_estudiante_db  # <--- Agregado
+    actualizar_estudiante_db,
+    eliminar_estudiante_db
 )
 
 
@@ -47,3 +32,7 @@ def actualizar_estudiante(estudiante_id, nombre, apellido, matricula, carrera, s
         semestre,
         correo
     )
+
+
+def eliminar_estudiante(id):
+    return eliminar_estudiante_db(id)

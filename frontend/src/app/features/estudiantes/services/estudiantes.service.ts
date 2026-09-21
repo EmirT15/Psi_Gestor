@@ -1,4 +1,5 @@
-import {Injectable, inject} from "@angular/core";
+
+import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Estudiante, CrearEstudiante } from "../models/estudiante.model";
@@ -9,10 +10,10 @@ import { Estudiante, CrearEstudiante } from "../models/estudiante.model";
 export class EstudiantesService {
     private http = inject(HttpClient);
 
-private apiUrl = 'http://localhost:5000/estudiantes';
+    private apiUrl = 'http://localhost:5000/estudiantes';
 
-    obtenerEstudiantes(): Observable<{ estudiantes: Estudiante[]} > {
-        return this.http.get<{estudiantes: Estudiante[] }> (this.apiUrl);
+    obtenerEstudiantes(): Observable<{ estudiantes: Estudiante[] }> {
+        return this.http.get<{ estudiantes: Estudiante[] }>(this.apiUrl);
     }
 
     crearEstudiante(estudiante: CrearEstudiante): Observable<Estudiante> {
@@ -21,5 +22,9 @@ private apiUrl = 'http://localhost:5000/estudiantes';
 
     actualizarEstudiante(id: number, estudiante: CrearEstudiante): Observable<Estudiante> {
         return this.http.put<Estudiante>(`${this.apiUrl}/${id}`, estudiante);
+    }
+
+    eliminarEstudiante(id: number): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/${id}`);
     }
 }

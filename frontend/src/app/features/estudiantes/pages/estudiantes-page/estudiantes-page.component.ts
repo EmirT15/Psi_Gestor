@@ -1,3 +1,4 @@
+
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { EstudiantesService } from '../../services/estudiantes.service';
 import { Estudiante } from '../../models/estudiante.model';
@@ -51,5 +52,16 @@ export class EstudiantesPageComponent implements OnInit {
         this.mostrarFormulario = false;
         this.estudianteSeleccionado = null;
         this.cargarEstudiantes();
+    }
+
+    eliminarEstudiante(id: number): void {
+        this.estudiantesService.eliminarEstudiante(id).subscribe({
+            next: () => {
+                this.cargarEstudiantes();
+            },
+            error: (error) => {
+                console.error("Error al eliminar estudiante", error);
+            }
+        });
     }
 }
