@@ -3,6 +3,7 @@ import psycopg
 import os
 from dotenv import load_dotenv
 from routes.estudiantes import estudiantes_bp
+from routes.auth import auth_bp
 from flask_cors import CORS
 
 
@@ -12,6 +13,7 @@ app = Flask(__name__)
 CORS(app)
 
 app.register_blueprint(estudiantes_bp)
+app.register_blueprint(auth_bp)
 
 @app.route("/")
 def inicio():
